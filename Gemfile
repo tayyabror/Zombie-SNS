@@ -46,7 +46,6 @@ gem 'bootsnap', require: false
 gem 'bootstrap', '~> 5.2.3'
 gem 'rspec-rails', '~> 6.0.0'
 gem 'factory_bot_rails'
-gem 'rubocop'
 gem 'active_model_serializers'
 
 

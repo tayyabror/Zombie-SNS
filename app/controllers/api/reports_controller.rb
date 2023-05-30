@@ -18,13 +18,13 @@ module Api
 
     def percentage_of_infected_survivors
       total_survivors = Survivor.all
-      infected_survivors = total_survivors.where(infected: true)
+      infected_survivors = total_survivors.infected
       get_percentage(infected_survivors.count, total_survivors.count)
     end
 
     def percentage_of_non_infected_survivors_report
       total_survivors = Survivor.all
-      not_infected_survivors = total_survivors.where(infected: [false, nil])
+      not_infected_survivors = total_survivors.healthy
       get_percentage(not_infected_survivors.count, total_survivors.count)
     end
 
@@ -41,7 +41,7 @@ module Api
     end
 
     def lost_point
-      infected_survivor_ids = Survivor.where(infected: true).pluck(:id)
+      infected_survivor_ids = Survivor.infected.pluck(:id)
       SurvivorInventoryItem.joins(:inventory_item)
                            .where(survivor_id: infected_survivor_ids)
                            .sum('inventory_items.points * survivor_inventory_items.quantity')

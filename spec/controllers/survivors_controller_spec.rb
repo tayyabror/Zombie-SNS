@@ -119,7 +119,7 @@ RSpec.describe Api::SurvivorsController, type: :request do
       expect(response).to have_http_status(:ok)
       expect(json_response['message']).to eq('Survivor is reported as infected')
       expect(survivor2.reported_by).to include(survivor.id)
-      expect([nil, false]).to include(survivor2.infected)
+      expect(survivor2.infected).to eq(false)
     end
   end
 

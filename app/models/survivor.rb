@@ -6,6 +6,9 @@ class Survivor < ApplicationRecord
   has_many :inventory_items, through: :survivor_inventory_items
 
   accepts_nested_attributes_for :survivor_inventory_items
+  
+  scope :infected, -> { where(infected: true) }
+  scope :healthy, -> { where(infected: false) }
 
   validate :validate_reported_by_uniqueness
   validates :name, :age, :gender, :latitude, :longitude, presence: true

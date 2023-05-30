@@ -6,7 +6,7 @@ class CreateSurvivors < ActiveRecord::Migration[7.0]
       t.string :gender
       t.float :latitude
       t.float :longitude
-      t.boolean :infected
+      t.boolean :infected, default: false
       t.integer :reported_by, array: true, default: []
 
       t.timestamps
